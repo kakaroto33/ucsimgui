@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.kakaroto33.ucsimgui</id>
-    <name>ucsimgui Template</name>
+    <name>uCsim GUI</name>
     <vendor>kakaroto33</vendor>
 
     <depends>com.intellij.modules.platform</depends>
@@ -9,10 +9,81 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.kakaroto33.ucsimgui.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <toolWindow
+                factoryClass="com.github.kakaroto33.ucsimgui.toolWindow.UgToolFactory"
+                id="uCsim GUI"
+                anchor="bottom"
+                secondary="true"
+                icon="AllIcons.Toolwindows.ToolWindowCommander" />
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.kakaroto33.ucsimgui.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
+        <listener
+                class="com.github.kakaroto33.ucsimgui.listeners.MyApplicationActivationListener"
+                topic="com.intellij.openapi.application.ApplicationActivationListener"/>
     </applicationListeners>
+    <actions>
+        <group
+                id="com.github.kakaroto33.ucsimgui.actions.group.WorkingFile"
+                class="com.github.kakaroto33.ucsimgui.actions.group.WorkingFile"
+                text="Working File Group"
+                description="Working file toolbar action group">
+            <action
+                    class="com.github.kakaroto33.ucsimgui.actions.OpenFile"
+                    id="com.github.kakaroto33.ucsimgui.actions.OpenFile"
+                    text="Open Working File"
+                    description="Open working file"
+                    icon="AllIcons.Actions.MenuOpen">
+            </action>
+            <action
+                    class="com.github.kakaroto33.ucsimgui.actions.ReloadFile"
+                    id="com.github.kakaroto33.ucsimgui.actions.ReloadFile"
+                    text="Reload Working File"
+                    description="Reload working file"
+                    icon="AllIcons.Actions.Refresh">
+            </action>
+            <action
+                    class="com.github.kakaroto33.ucsimgui.actions.ReloadFile"
+                    id="com.github.kakaroto33.ucsimgui.actions.FileInfo"
+                    text="Working File Info"
+                    description="Working file info"
+                    icon="AllIcons.Actions.QuickfixOffBulb">
+            </action>
+        </group>
+        <group
+                id="com.github.kakaroto33.ucsimgui.actions.group.RunForrestRun"
+                class="com.github.kakaroto33.ucsimgui.actions.group.RunForrestRun"
+                text="Run Assembly Group"
+                description="Run Assembly toolbar action group">
+            <action
+                    class="com.github.kakaroto33.ucsimgui.actions.OpenFile"
+                    id="com.github.kakaroto33.ucsimgui.actions.RunAll"
+                    text="Open Working File"
+                    description="SDK static grouped action example"
+                    icon="AllIcons.Actions.RunAll">
+            </action>
+
+            <action
+                    class="com.github.kakaroto33.ucsimgui.actions.OpenFile"
+                    id="com.github.kakaroto33.ucsimgui.actions.TraceOver"
+                    text="Open Working File"
+                    description="SDK static grouped action example"
+                    icon="AllIcons.Actions.TraceOver">
+            </action>
+            <action
+                    class="com.github.kakaroto33.ucsimgui.actions.OpenFile"
+                    id="com.github.kakaroto33.ucsimgui.actions.TraceInto"
+                    text="Open Working File"
+                    description="SDK static grouped action example"
+                    icon="AllIcons.Actions.TraceInto">
+            </action>
+            <action
+                    class="com.github.kakaroto33.ucsimgui.actions.OpenFile"
+                    id="com.github.kakaroto33.ucsimgui.actions.Stop"
+                    text="Open Working File"
+                    description="SDK static grouped action example"
+                    icon="AllIcons.Actions.Suspend">
+            </action>
+        </group>
+    </actions>
 </idea-plugin>
