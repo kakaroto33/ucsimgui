@@ -19,7 +19,7 @@
 
     <applicationListeners>
         <listener
-                class="com.github.kakaroto33.ucsimgui.listeners.MyApplicationActivationListener"
+                class="com.github.kakaroto33.ucsimgui.listeners.Activation"
                 topic="com.intellij.openapi.application.ApplicationActivationListener"/>
     </applicationListeners>
     <actions>
@@ -29,21 +29,21 @@
                 text="Working File Group"
                 description="Working file toolbar action group">
             <action
-                    class="com.github.kakaroto33.ucsimgui.actions.OpenFile"
-                    id="com.github.kakaroto33.ucsimgui.actions.OpenFile"
+                    class="com.github.kakaroto33.ucsimgui.actions.FileOpen"
+                    id="com.github.kakaroto33.ucsimgui.actions.FileOpen"
                     text="Open Working File"
                     description="Open working file"
                     icon="AllIcons.Actions.MenuOpen">
             </action>
             <action
-                    class="com.github.kakaroto33.ucsimgui.actions.ReloadFile"
-                    id="com.github.kakaroto33.ucsimgui.actions.ReloadFile"
+                    class="com.github.kakaroto33.ucsimgui.actions.FileReload"
+                    id="com.github.kakaroto33.ucsimgui.actions.FileReload"
                     text="Reload Working File"
                     description="Reload working file"
                     icon="AllIcons.Actions.Refresh">
             </action>
             <action
-                    class="com.github.kakaroto33.ucsimgui.actions.ReloadFile"
+                    class="com.github.kakaroto33.ucsimgui.actions.FileInfo"
                     id="com.github.kakaroto33.ucsimgui.actions.FileInfo"
                     text="Working File Info"
                     description="Working file info"
@@ -56,7 +56,7 @@
                 text="Run Assembly Group"
                 description="Run Assembly toolbar action group">
             <action
-                    class="com.github.kakaroto33.ucsimgui.actions.OpenFile"
+                    class="com.github.kakaroto33.ucsimgui.actions.FileInfo"
                     id="com.github.kakaroto33.ucsimgui.actions.RunAll"
                     text="Open Working File"
                     description="SDK static grouped action example"
@@ -64,21 +64,21 @@
             </action>
 
             <action
-                    class="com.github.kakaroto33.ucsimgui.actions.OpenFile"
+                    class="com.github.kakaroto33.ucsimgui.actions.FileInfo"
                     id="com.github.kakaroto33.ucsimgui.actions.TraceOver"
                     text="Open Working File"
                     description="SDK static grouped action example"
                     icon="AllIcons.Actions.TraceOver">
             </action>
             <action
-                    class="com.github.kakaroto33.ucsimgui.actions.OpenFile"
+                    class="com.github.kakaroto33.ucsimgui.actions.FileInfo"
                     id="com.github.kakaroto33.ucsimgui.actions.TraceInto"
                     text="Open Working File"
                     description="SDK static grouped action example"
                     icon="AllIcons.Actions.TraceInto">
             </action>
             <action
-                    class="com.github.kakaroto33.ucsimgui.actions.OpenFile"
+                    class="com.github.kakaroto33.ucsimgui.actions.FileInfo"
                     id="com.github.kakaroto33.ucsimgui.actions.Stop"
                     text="Open Working File"
                     description="SDK static grouped action example"

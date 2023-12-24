@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="toolWindow.UgToolForm">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.github.kakaroto33.ucsimgui.toolWindow.UgToolForm">
   <grid id="27dc6" binding="panelMain" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
       <xy x="20" y="20" width="840" height="369"/>
@@ -7,9 +7,9 @@
     <properties>
       <minimumSize width="600" height="300"/>
     </properties>
-    <border type="none"/>
+    <border type="empty"/>
     <children>
-      <splitpane id="bff3c">
+      <splitpane id="bff3c" binding="splitPaneMain">
         <constraints border-constraint="Center"/>
         <properties>
           <continuousLayout value="false"/>
@@ -17,7 +17,7 @@
           <foreground color="-13552843"/>
           <opaque value="true"/>
         </properties>
-        <border type="none"/>
+        <border type="empty"/>
         <children>
           <grid id="f070f" layout-manager="BorderLayout" hgap="0" vgap="0">
             <constraints>
@@ -27,19 +27,19 @@
               <minimumSize width="300" height="200"/>
               <preferredSize width="800" height="113"/>
             </properties>
-            <border type="none"/>
+            <border type="empty"/>
             <children>
               <grid id="f1ae0" binding="panelToolBar" layout-manager="BorderLayout" hgap="0" vgap="0">
                 <constraints border-constraint="North"/>
                 <properties>
                   <minimumSize width="0" height="200"/>
                 </properties>
-                <border type="none"/>
+                <border type="empty"/>
                 <children>
                   <grid id="23ff3" binding="panelToolBarFile" layout-manager="BorderLayout" hgap="0" vgap="0">
                     <constraints border-constraint="North"/>
                     <properties/>
-                    <border type="none"/>
+                    <border type="empty"/>
                     <children>
                       <component id="75bc4" class="javax.swing.JTextArea" binding="textAreaFileName">
                         <constraints border-constraint="Center"/>
@@ -54,7 +54,7 @@
                   <grid id="beabd" binding="panelToolBarRun" layout-manager="BorderLayout" hgap="0" vgap="0">
                     <constraints border-constraint="South"/>
                     <properties/>
-                    <border type="none"/>
+                    <border type="empty"/>
                     <children/>
                   </grid>
                 </children>
@@ -62,15 +62,16 @@
               <grid id="7e3f8" binding="panelEditorArea" layout-manager="BorderLayout" hgap="0" vgap="0">
                 <constraints border-constraint="Center"/>
                 <properties/>
-                <border type="none"/>
+                <border type="empty"/>
                 <children>
-                  <splitpane id="dc1d7">
+                  <splitpane id="dc1d7" binding="splitPaneEditor">
                     <constraints border-constraint="Center"/>
                     <properties>
+                      <foreground color="-13552843"/>
                       <orientation value="0"/>
                       <resizeWeight value="1.0"/>
                     </properties>
-                    <border type="none"/>
+                    <border type="empty"/>
                     <children>
                       <grid id="d01e" binding="panelEditor" layout-manager="BorderLayout" hgap="0" vgap="0">
                         <constraints>
@@ -81,7 +82,7 @@
                           <minimumSize width="0" height="200"/>
                           <preferredSize width="0" height="1000"/>
                         </properties>
-                        <border type="none"/>
+                        <border type="empty"/>
                         <children/>
                       </grid>
                       <grid id="d8484" binding="panelMessages" layout-manager="BorderLayout" hgap="0" vgap="0">
@@ -94,12 +95,12 @@
                           <minimumSize width="1" height="50"/>
                           <preferredSize width="1" height="50"/>
                         </properties>
-                        <border type="none"/>
+                        <border type="empty"/>
                         <children>
                           <scrollpane id="53bee">
                             <constraints border-constraint="Center"/>
                             <properties/>
-                            <border type="none"/>
+                            <border type="empty"/>
                             <children>
                               <component id="395ef" class="javax.swing.JTextPane" binding="textPaneMessages">
                                 <constraints/>
@@ -125,14 +126,15 @@
               <minimumSize width="300" height="200"/>
               <preferredSize width="400" height="200"/>
             </properties>
-            <border type="none"/>
+            <border type="empty"/>
             <children>
-              <splitpane id="447b0">
+              <splitpane id="447b0" binding="splitPaneTools">
                 <constraints border-constraint="Center"/>
                 <properties>
+                  <foreground color="-13552843"/>
                   <preferredSize width="250" height="200"/>
                 </properties>
-                <border type="none"/>
+                <border type="empty"/>
                 <children>
                   <tabbedpane id="6ccbf" binding="tabbedPane1" default-binding="true">
                     <constraints>
@@ -142,7 +144,7 @@
                       <minimumSize width="250" height="40"/>
                       <preferredSize width="400" height="40"/>
                     </properties>
-                    <border type="none"/>
+                    <border type="empty"/>
                     <children>
                       <grid id="10e3c" layout-manager="BorderLayout" hgap="0" vgap="0">
                         <constraints>
@@ -163,7 +165,7 @@
                       <preferredSize width="50" height="24"/>
                       <visible value="false"/>
                     </properties>
-                    <border type="none"/>
+                    <border type="empty"/>
                     <children>
                       <component id="6e630" class="javax.swing.JRadioButton" binding="radioButton1" default-binding="true">
                         <constraints border-constraint="North"/>

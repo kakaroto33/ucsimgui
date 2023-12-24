@@ -1,4 +1,4 @@
-package toolWindow;
+package com.github.kakaroto33.ucsimgui.toolWindow;
 
 import com.intellij.openapi.actionSystem.*;
 import com.intellij.openapi.editor.Document;
@@ -6,6 +6,10 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.EditorFactory;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicSplitPaneDivider;
+import javax.swing.plaf.basic.BasicSplitPaneUI;
+
 import java.awt.*;
 
 public class UgToolForm {
@@ -20,6 +24,9 @@ public class UgToolForm {
     private JPanel panelEditor;
     private JPanel panelMessages;
     private JTextPane textPaneMessages;
+    private JSplitPane splitPaneMain;
+    private JSplitPane splitPaneEditor;
+    private JSplitPane splitPaneTools;
 
     public UgToolForm()
     {
@@ -51,10 +58,55 @@ public class UgToolForm {
         Editor editor = editorFactory.createEditor(document);
         panelEditor.add(BorderLayout.CENTER, editor.getComponent());
 
+        updateLooks();
+
     }
 
     public JPanel getPanelMain()
     {
         return panelMain;
+    }
+
+    public void updateLooks()
+    {
+        changeSplitPaneDivider(splitPaneMain);
+        changeSplitPaneDivider(splitPaneEditor);
+        changeSplitPaneDivider(splitPaneTools);
+    }
+
+    /**
+     * Change JSplitPane divider look and feel to line with 1 pixel
+     * I didn't look how to make it b
+     * @param split
+     */
+    public static void changeSplitPaneDivider(JSplitPane split)
+    {
+        split.setUI(new BasicSplitPaneUI()
+        {
+            @Override
+            public BasicSplitPaneDivider createDefaultDivider()
+            {
+                return new BasicSplitPaneDivider(this)
+                {
+                    public void setBorder(Border b) {}
+
+                    @Override
+                    public void paint(Graphics g)
+                    {
+                        //https://stackoverflow.com/questions/8934169/how-to-change-the-color-or-background-color-of-jsplitpane-divider
+//                        g.setColor(Color.BLACK);
+//                        g.fillRect(0, 0, getSize().width, getSize().height);
+                        g.setColor(null);
+                        if (this.orientation == JSplitPane.HORIZONTAL_SPLIT) {
+                            g.fillRect(0, 0, 1, getSize().height);
+                        } else {
+                            g.fillRect(0, 0, getSize().width, 1);
+                        }
+
+                        super.paint(g);
+                    }
+                };
+            }
+        });
     }
 }
