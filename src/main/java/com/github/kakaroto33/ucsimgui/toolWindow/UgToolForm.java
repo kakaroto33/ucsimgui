@@ -1,18 +1,23 @@
 package com.github.kakaroto33.ucsimgui.toolWindow;
 
-import com.intellij.openapi.actionSystem.*;
+import com.github.kakaroto33.ucsimgui.services.UgManager;
+import com.intellij.openapi.Disposable;
+import com.intellij.openapi.actionSystem.ActionGroup;
+import com.intellij.openapi.actionSystem.ActionManager;
+import com.intellij.openapi.actionSystem.ActionPlaces;
+import com.intellij.openapi.actionSystem.ActionToolbar;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.EditorFactory;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicSplitPaneDivider;
 import javax.swing.plaf.basic.BasicSplitPaneUI;
-
 import java.awt.*;
 
-public class UgToolForm {
+public class UgToolForm implements Disposable {
     private JPanel panelMain;
     private JPanel panelEditorArea;
     private JPanel panelToolBar;
@@ -28,45 +33,43 @@ public class UgToolForm {
     private JSplitPane splitPaneEditor;
     private JSplitPane splitPaneTools;
 
+    //-- NON FORM COMPONENTS -------------------------------------------------------------------------------------------
+    private final Editor oapiEditor;
+
+    //-- PUBLIC METHODS ------------------------------------------------------------------------------------------------
+
     public UgToolForm()
     {
-        ActionManager actionManager = ActionManager.getInstance();
-        //DefaultActionGroup actionGroup = new DefaultActionGroup("ACTION_GROUP", false);
-        //actionGroup.add(ActionManager.getInstance().getAction("deployAction"));
-        //actionGroup.add(ActionManager.getInstance().getAction("com.k33.ucsimgui.PopupDialogAction"));
-
-        //DefaultActionGroup actionGroup2 = ActionManager.getInstance().getAction("com.k33.ucsimgui.PopupDialogAction")
-        ActionGroup groupWorkingFile = (ActionGroup) actionManager.getAction("com.github.kakaroto33.ucsimgui.actions.group.WorkingFile");
-
-        //ActionToolbar actionToolbar = actionManager.createActionToolbar("ACTION_TOOLBAR", actionGroup, true);
-
+        // Get plugin.xml Action Group to create SDK native action toolbar, place it on reserved JPanel
+        ActionManager actionManager     = ActionManager.getInstance();
+        ActionGroup groupWorkingFile    = (ActionGroup) actionManager.getAction("com.github.kakaroto33.ucsimgui.actions.group.WorkingFile");
         ActionToolbar actionWorkingFile = actionManager.createActionToolbar(ActionPlaces.TOOLWINDOW_TITLE, groupWorkingFile, true);
         actionWorkingFile.setTargetComponent(panelToolBarFile.getRootPane());
         actionWorkingFile.setOrientation(SwingConstants.HORIZONTAL);
-        //actionToolbar.setLayoutPolicy(SwingConstants.NORTH);
-        //this.setToolbar(actionToolbar.getComponent());
         panelToolBarFile.add(BorderLayout.EAST, actionWorkingFile.getComponent());
 
-        ActionGroup groupRun = (ActionGroup) actionManager.getAction("com.github.kakaroto33.ucsimgui.actions.group.RunForrestRun");
+        // Get plugin.xml Action Group to create SDK native action toolbar, place it on reserved JPanel
+        ActionGroup groupRun    = (ActionGroup) actionManager.getAction("com.github.kakaroto33.ucsimgui.actions.group.RunForrestRun");
         ActionToolbar actionRun = actionManager.createActionToolbar(ActionPlaces.TOOLWINDOW_TITLE, groupRun, true);
         actionRun.setTargetComponent(panelToolBarRun.getRootPane());
         actionRun.setOrientation(SwingConstants.HORIZONTAL);
         panelToolBarRun.add(BorderLayout.CENTER, actionRun.getComponent());
 
+        // Create native Intellij editor with lots features
         EditorFactory editorFactory = EditorFactory.getInstance();
-        Document document = editorFactory.createDocument("initialText");
-        Editor editor = editorFactory.createEditor(document);
-        panelEditor.add(BorderLayout.CENTER, editor.getComponent());
+        oapiEditor   = editorFactory.createEditor(editorFactory.createDocument("Empty Document"));
+        panelEditor.add(BorderLayout.CENTER, oapiEditor.getComponent());
 
         updateLooks();
 
     }
 
-    public JPanel getPanelMain()
-    {
-        return panelMain;
-    }
+    public JPanel getPanelMain() { return panelMain; }
 
+    /**
+     * Update custom look and feel, is not full OK with theme changes.
+     * TODO: Maybe look how to make it native way..
+     */
     public void updateLooks()
     {
         changeSplitPaneDivider(splitPaneMain);
@@ -76,8 +79,6 @@ public class UgToolForm {
 
     /**
      * Change JSplitPane divider look and feel to line with 1 pixel
-     * I didn't look how to make it b
-     * @param split
      */
     public static void changeSplitPaneDivider(JSplitPane split)
     {
@@ -108,5 +109,14 @@ public class UgToolForm {
                 };
             }
         });
+    }
+
+    //-- IMPLEMENTS Disposable -----------------------------------------------------------------------------------------
+
+    @Override
+    public void dispose() {
+        UgManager.LOGGER.info("dispose(): " + this.getClass());
+        // Need dispose created Intellij Editor, this is manually called on dispose of UgToolWindow.
+        EditorFactory.getInstance().releaseEditor(oapiEditor);
     }
 }
