@@ -16,6 +16,7 @@ import java.io.InputStream;
 
 public class UgFile {
 
+
     private static final String FILENAME = "/users/mkyong/staff.xml";
     public  void ss() {
 
@@ -80,5 +81,16 @@ public class UgFile {
         }
 
     }
+
+    /**
+     *
+     * @param simulatorType UgSimulator.SIMULATOR_X
+     * @return
+     */
+//    public static String getListExamples(String simulatorType)
+//    {
+//
+//    }
+
 
 }

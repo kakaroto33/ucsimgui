@@ -18,6 +18,13 @@
         <projectService
                 serviceInterface="com.github.kakaroto33.ucsimgui.services.UgManagerInterface"
                 serviceImplementation="com.github.kakaroto33.ucsimgui.services.UgManager"/>
+
+        <applicationConfigurable parentId="tools" instance="com.github.kakaroto33.ucsimgui.settings.UgConfigurable"
+                                 id="com.github.kakaroto33.ucsimgui.settings.UgConfigurable"
+                                 displayName="uCsim GUI"/>
+        <applicationService serviceImplementation="com.github.kakaroto33.ucsimgui.settings.UgState"/>
+        <!-- projectService serviceImplementation="com.github.kakaroto33.ucsimgui.settings.UgWorkspace"/ -->
+
     </extensions>
 
     <applicationListeners>

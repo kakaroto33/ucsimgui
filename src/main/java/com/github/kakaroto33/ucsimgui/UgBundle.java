@@ -35,6 +35,7 @@ public final class UgBundle extends DynamicBundle {
         Intrinsics.checkNotNullParameter(params, "params");
         Supplier var10000 = INSTANCE.getLazyMessage(key, Arrays.copyOf(params, params.length));
         Intrinsics.checkNotNullExpressionValue(var10000, "getLazyMessage(key, *params)");
+
         return var10000;
     }
 
